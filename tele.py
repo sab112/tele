@@ -10,9 +10,8 @@ class get_price():
     page = requests.get(self.priceurl, headers=self.header)
     soup = BeautifulSoup(page.content, 'html.parser')
 
-    titel_id = soup.find(id='productTitle')     
-    title_text = titel_id.get_text()   
-    self.title = title_text.strip()
+    titel_id = soup.find(id='productTitle').get_text()     
+    self.title = titel_id.strip()
     print(self.title)
 
     price_id = soup.find(id='priceblock_ourprice') 
