@@ -1,1 +1,1 @@
-web: gunicorn tele.py:app
+web: python tele.py
