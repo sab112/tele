@@ -11,7 +11,7 @@ class get_price():
     soup = BeautifulSoup(page.content, 'html.parser')
 
     titel_id = soup.find(id='productTitle')     
-    title_text = titel_id.text   
+    title_text = titel_id.get_text()   
     self.title = title_text.strip()
     print(self.title)
 
