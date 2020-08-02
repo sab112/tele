@@ -1,1 +1,1 @@
-web:  python tele.ppy
+web:  python tele.py
