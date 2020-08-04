@@ -9,7 +9,9 @@ class get_price():
     
     page = requests.get(self.priceurl, headers=self.header)
     self.soup = BeautifulSoup(page.content, 'html.parser')
-    
+    #page = requests.get(self.priceurl)
+    #self.soup = BeautifulSoup(page.content)
+
     if 'www.amazon' in self.priceurl:
         self.amazon()
     elif 'www.flipkart' in self.priceurl:
@@ -29,15 +31,24 @@ class get_price():
 
  def flipkart(self): 
     
-    title_id = self.soup.search('span._35KyD6') 
-    title_id1 = title_id[0].get_text()
-    self.title = title_id1.strip()  
+    title_id = self.soup.select('span._35KyD6') 
+    print('===============')
+    print(title_id)
+    title_text = title_id[0].get_text()
+    self.title = title_text.strip()  
     print(self.title)
     
-    price_id = self.soup.search('div._1vC4OE _3qQ9m1')
-    price_text = price_id[0].get_text()
+    price_id = self.soup.find('div',{'class':'_1vC4OE _3qQ9m1'})
+    print('===============')
+    print(price_id)
+    price_text = price_id.get_text()
     self.price = price_text.replace(',','').lstrip('₹').strip()
     print(self.price)
+
+    rating = self.soup.select('div.hGSR34 img')    #  1)div.class    2)div#id
+    imgurl = rating[0]['src']
+
+
 
 
 url = 'https://api.telegram.org/bot1332343561:AAHrYoSJmke-WCrAAmKMS0IN-_BZIazAzFY/getUpdates'
@@ -82,10 +93,10 @@ while True:
         fk = ['www.flipkart','/p/itm']
         if all(x in lasttext for x in am) or all(x in lasttext for x in fk):  #any()-for any match
             site = get_price(lasttext)
-            data1 = {"chat_id":"@myjarvisgroup", "text":site.title+'\n'+site.price"+'\n-heroku'}
+            data1 = {"chat_id":"@myjarvisgroup", "text":site.title+'\n'+site.price+'\n-heroku'}
             rpost = requests.post(url1,data=data1)
         else:
-            data1 = {"chat_id":"@myjarvisgroup", "text":'this is not amazon'+'\n-heroku''}
+            data1 = {"chat_id":"@myjarvisgroup", "text":'this is not amazon'+'\n-heroku'}
             rpost = requests.post(url1,data=data1)
 
     prevpost = lastest_updated_id
