@@ -82,10 +82,10 @@ while True:
         fk = ['www.flipkart','/p/itm']
         if all(x in lasttext for x in am) or all(x in lasttext for x in fk):  #any()-for any match
             site = get_price(lasttext)
-            data1 = {"chat_id":"@myjarvisgroup", "text":site.title+'\n'+site.price"'\n'+'-heroku'}
+            data1 = {"chat_id":"@myjarvisgroup", "text":site.title+'\n'+site.price"+'\n-heroku'}
             rpost = requests.post(url1,data=data1)
         else:
-            data1 = {"chat_id":"@myjarvisgroup", "text":'this is not amazon'}
+            data1 = {"chat_id":"@myjarvisgroup", "text":'this is not amazon'+'\n-heroku''}
             rpost = requests.post(url1,data=data1)
 
     prevpost = lastest_updated_id
