@@ -9,9 +9,7 @@ class get_price():
     
     page = requests.get(self.priceurl, headers=self.header)
     self.soup = BeautifulSoup(page.content, 'html.parser')
-    #page = requests.get(self.priceurl)
-    #self.soup = BeautifulSoup(page.content)
-
+ 
     if 'www.amazon' in self.priceurl:
         self.amazon()
     elif 'www.flipkart' in self.priceurl:
@@ -32,15 +30,11 @@ class get_price():
  def flipkart(self): 
     
     title_id = self.soup.select('span._35KyD6') 
-    print('===============')
-    print(title_id)
     title_text = title_id[0].get_text()
     self.title = title_text.strip()  
     print(self.title)
     
     price_id = self.soup.find('div',{'class':'_1vC4OE _3qQ9m1'})
-    print('===============')
-    print(price_id)
     price_text = price_id.get_text()
     self.price = price_text.replace(',','').lstrip('₹').strip()
     print(self.price)
@@ -78,13 +72,13 @@ while True:
     print(lasttext)
 
     if lasttext=='hi':       
-        data1 = {"chat_id":"@myjarvisgroup", "text":"hi how are you"}
+        data1 = {"chat_id":"@myjarvisgroup", "text":"hi how are you\n-heroku"}
         rpost = requests.post(url1,data=data1)
     elif lasttext=='im good':
-        data1 = {"chat_id":"@myjarvisgroup", "text":"me too"}
+        data1 = {"chat_id":"@myjarvisgroup", "text":"me too\n-heroku"}
         rpost = requests.post(url1,data=data1)    
     elif lasttext=='b':
-        data1 = {"chat_id":"@myjarvisgroup", "text":"bye"}
+        data1 = {"chat_id":"@myjarvisgroup", "text":"bye\n-heroku"}
         rpost = requests.post(url1,data=data1)
         break
 
