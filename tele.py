@@ -5,10 +5,10 @@ url = 'https://api.telegram.org/bot1332343561:AAHrYoSJmke-WCrAAmKMS0IN-_BZIazAzF
 i=0
 while True:    
         i += 1
-        txt = f'{i}) every 15 mins   -heroku'
+        txt = f'{i}) every 2 mins   -heroku'
         data1 = {"chat_id":"@myjarvisgroup", "text":txt}
         rpost = requests.post(url,data=data1)      
-        sleep(15 * 60)
+        sleep(2 * 60)
          
                 
 
